@@ -1,0 +1,28 @@
+.cardList {
+  width: 100%;
+    margin-bottom: 20px;
+}
+.card-parent {
+  width: 100%;
+    margin-bottom: 30px;
+    border: 2px solid #dcdbdb;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.card-header{
+  display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.cardDesc{
+  text-align: center;
+    font-size: 15px;
+}
+.no-card {
+  font-size: 15px;
+    text-align: center;
+    transform: translateY(50%);
+}

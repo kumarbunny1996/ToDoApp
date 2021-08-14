@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: arial;
+  color: grey;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background-color: none;
+}
+
+input {
+  outline: none;
+}
+
+.main-content {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.btn {
+  border: none;
+  text-decoration: none;
+  background-color: #2186c9;
+  text-align: center;
+  height: 40px;
+  width: 200px;
+  color: #fff;
+  padding: 5px 0px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 1px 1px 0.5px 1px #2186c9, 1px 1px 0.5px 1px #2186c9;
+  outline: none;
+  transition: all 0.1s ease;
+  border-radius: 5px;
+}
+.btn:hover {
+  background-color: #fff;
+  color: #2186c9;
+}
+.modal-overlay {
+  background-color: #032f3e;
+  opacity: 0.95;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  transition: 0.1s linear;
+  visibility: visible !important;
+  background-color: black !important;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  /* Black w/ opacity */
+}
+.modal-content {
+  background-color: #fff;
+  width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+  position: absolute;
+  top: 25%;
+  left: 35%;
+}
+.modal-header {
+  font-weight: 700;
+  font-size: 22px;
+  text-align: center;
+  border-bottom: 2px solid #c3c3c3;
+}
+.modal-inp {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.title-head {
+  margin-bottom: 8px;
+}
+.title-inp {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid #b7b7b7;
+  /* margin-bottom: 12px; */
+  border-radius: 5px;
+}
+.btns {
+  display: flex;
+    justify-content: space-between;
+}
+
+.cancel-btn {
+  width: 100px;
+    height: 40px;
+    background-color: #e4e4e4;
+    font-size: 18px;
+    border: 2px solid #cacaca;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.desc-inp {
+   width: 100%;
+  height: 100px;
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid #b7b7b7;
+  /* margin-bottom: 12px; */
+  border-radius: 5px;
+}
+.msg-style {
+  margin-top: 8px;
+    text-align: center;
+    font-size: 14px;
+}

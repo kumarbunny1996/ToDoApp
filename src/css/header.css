@@ -1,0 +1,23 @@
+header {
+  display: flex;
+  color: grey;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+#myInput {
+  background-image: url("../../public/search.png");
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  background-size: 5% 50%;
+  width: 40%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  border-radius: 5px;
+}
+#myInput:focus {
+  border: 2px solid rgb(22, 129, 216);
+}
