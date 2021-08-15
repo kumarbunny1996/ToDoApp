@@ -108,21 +108,21 @@ input {
 }
 .btns {
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .cancel-btn {
   width: 100px;
-    height: 40px;
-    background-color: #e4e4e4;
-    font-size: 18px;
-    border: 2px solid #cacaca;
-    border-radius: 5px;
-    cursor: pointer;
+  height: 40px;
+  background-color: #e4e4e4;
+  font-size: 18px;
+  border: 2px solid #cacaca;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .desc-inp {
-   width: 100%;
+  width: 100%;
   height: 100px;
   outline: none;
   font-size: 16px;
@@ -133,6 +133,16 @@ input {
 }
 .msg-style {
   margin-top: 8px;
-    text-align: center;
-    font-size: 14px;
+  text-align: center;
+  font-size: 14px;
+}
+.clr-btn {
+  color: #0781ff;
+    margin-bottom: 30px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #019ee8;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
 }

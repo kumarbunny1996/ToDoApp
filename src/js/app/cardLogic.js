@@ -1,5 +1,4 @@
 const { events, closeModal, showInfo, hideInfo } = require("../util");
-const { cardContentComp } = require("../components/cardListComp");
 
 require("../../css/common.css");
 require("../../css/header.css");
@@ -36,7 +35,7 @@ const updateCardListDom = (listId, listObj) => {
     if (listId == cardCont[i].dataset.id && cardList.length != 0) {
       for (let j = 0; j < cardList.length; j++) {
         result += `
-              <div class="card-parent" data-id="${cardList[j].card_id}">
+              <div class="card-parent draggable" draggable="true" data-id="${cardList[j].card_id}">
                 <div class="card-header">
                   <h2>${cardList[j].title}</h2>
                   <div class="icons">
@@ -63,13 +62,14 @@ const addCardInps = (title, desc, listId) => {
     addCardData(listObj, title, desc);
     updateData(listId, todos, listObj);
     updateCardListDom(listId, listObj);
+    startDragging();
     closeModal();
   }
 };
 
 const addCardLogic = (e) => {
-  let input = document.getElementById("card-inp").value;
-  let desc = document.getElementById("desc-inp").value;
+  let input = document.getElementById("card-inp").value.toLowerCase();
+  let desc = document.getElementById("desc-inp").value.toLowerCase();
   let listId = e.target.dataset.id;
   let title = input;
   if (title === "") return showInfo("Title is Mandatory");
@@ -184,6 +184,60 @@ const deleteCardLogic = (e) => {
   }
 };
 
+// drag and drop functionality
+// dragging start
+
+const startDragging = () => {
+  let draggables = document.querySelectorAll(".draggable");
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", (e) => {
+      draggable.classList.add("dragging");
+    });
+    draggable.addEventListener("dragend", (e) => {
+      draggable.classList.remove("dragging");
+    });
+  });
+};
+
+//drop containers
+const draggingOver = () => {
+  let containers = document.querySelectorAll(".drag-container");
+  containers.forEach((container) => {
+    container.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      let draggable = document.querySelector(".dragging");
+      container.appendChild(draggable);
+      //  const afterElement = getDragAfterElement(container, e.clientY);
+      //  const draggable = document.querySelector(".dragging");
+      //  let children = container.childNodes;
+      //  if (afterElement == null) {
+      //    children[2].appendChild(draggable);
+      //  } else {
+      //    children[2].insertBefore(draggable, afterElement);
+      //  }
+    });
+  });
+};
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [
+    ...container.querySelectorAll(".draggable:not(.dragging)"),
+  ];
+
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
+}
+
 const addCardEventLogic = () => {
   events("#add-card", "click", (e) => {
     addCardLogic(e);
@@ -202,9 +256,15 @@ const deleteCardEvent = () => {
   });
 };
 
+const cardDomEvents = () =>{
+  favoriteCardEvent();
+  deleteCardEvent();
+  startDragging();
+  draggingOver();
+}
+
 module.exports = {
   addCardEventLogic,
-  favoriteCardEvent,
-  deleteCardEvent,
+  cardDomEvents,
   noCardComp,
 };

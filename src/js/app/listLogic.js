@@ -4,7 +4,7 @@ const { events, closeModal, showInfo, hideInfo } = require("../util");
 
 const addListLogic = (e) => {
   let input = document.getElementById("title-inp").value;
-  let value = input;
+  let value = input.toLowerCase();
   if (value === "") return showInfo("Title is Mandatory");
   if (document.getElementById("msg")) {
     hideInfo();
@@ -64,7 +64,7 @@ const removeData = (listId) => {
   });
   todoList.splice(index, 1);
   localStorage.setItem("toDoList", JSON.stringify(todoList));
-  if(todoList.length == 0) NoListContComp();
+  if (todoList.length == 0) NoListContComp();
 };
 
 //remove list logic

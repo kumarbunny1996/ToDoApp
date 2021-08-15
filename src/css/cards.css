@@ -8,7 +8,7 @@
     border: 2px solid #dcdbdb;
     padding: 8px;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: move;
 }
 .card-header{
   display: flex;
@@ -31,4 +31,10 @@
 }
 [data-favorite |= true] {
   color: rgb(255, 159, 14);
+}
+.icons {
+  cursor: pointer;
+}
+.draggable.dragging {
+  opacity: .5;
 }

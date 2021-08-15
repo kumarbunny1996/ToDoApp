@@ -15,7 +15,7 @@
 }
 .list-parent {
   width: 100%;
-    height: 100%;
+  height: 100%;
   position: relative;
   padding: 10px;
   padding-bottom: 0px;
@@ -31,19 +31,23 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
-.icon-style{
+.icon-style {
   cursor: pointer;
 }
-.card-btn{
+.card-btn {
   color: rgb(22, 129, 216);
-    border-radius:0px 0px 5px 5px;
-    font-size: 16px;
-    background-color: #e4e2e2;
-    width: 100%;
-    height: 35px;
-    cursor: pointer;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    top: 100%;
+  border-radius: 0px 0px 5px 5px;
+  font-size: 16px;
+  background-color: #e4e2e2;
+  width: 100%;
+  height: 35px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  top: 100%;
 }
+.searchCont {
+  padding: 40px;
+}
+

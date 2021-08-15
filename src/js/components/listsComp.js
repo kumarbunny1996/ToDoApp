@@ -5,6 +5,9 @@ const { addCardEventLogic } = require("../app/cardLogic");
 let { events, showModal } = require("../util");
 
 const listContentComp = () => {
+  if (document.getElementById("searchCont")) {
+    removeSearchComp();
+  }
   let todos = JSON.parse(localStorage.getItem("toDoList"));
   if (todos === null || todos === undefined || todos.length == 0) {
     NoListContComp();
@@ -22,12 +25,21 @@ const NoListContComp = () => {
   `;
 };
 
+const removeSearchComp = () => {
+  let mainCont = document.getElementById("main-content");
+  let searchCont = document.getElementById("searchCont");
+  mainCont.removeChild(searchCont);
+  let listContent = document.createElement("div");
+  listContent.className = "listContent";
+  listContent.id = "listContent";
+  mainCont.appendChild(listContent);
+};
 const listArrayComp = (listArr = []) => {
   let listCont = document.getElementById("listContent");
   let result = "";
   for (let i = 0; i < listArr.length; i++) {
     result += `
-            <div class="list-parent" data-id="${listArr[i].id}">
+            <div class="list-parent drag-container" data-id="${listArr[i].id}">
               <div class="list-header">
                 <h2>${listArr[i].title}</h2>
                 <i class="far fa-trash-alt icon-style" data-id="${listArr[i].id}" data-action="delete"></i>
@@ -78,4 +90,5 @@ module.exports = {
   listContentComp,
   addCardEvent,
   NoListContComp,
+  removeSearchComp,
 };

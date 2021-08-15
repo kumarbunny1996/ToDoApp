@@ -18,7 +18,7 @@ const cardArray = (cardArr = [], cardCont = []) => {
     if (cardArr[i].id == listId && cardList.length != 0) {
       for (let j = 0; j < cardList.length; j++) {
         result += `
-              <div class="card-parent" data-id="${cardList[j].card_id}">
+              <div class="card-parent draggable" data-id="${cardList[j].card_id}" draggable="true">
                 <div class="card-header">
                   <h2>${cardList[j].title}</h2>
                   <div class="icons">

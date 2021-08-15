@@ -9,12 +9,11 @@ const toDoListPage = () => {
   mainContent.innerHTML = `
        <header>
           <h1>ToDoList</h1>
-          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for todos..">
+          <input type="text" id="myInput" placeholder="Search for todos..">
+          <input type="button" id="myBtn" value="Search" hidden="true">
           <button id="addList" class="btn">Add List</button>
        </header>
        <div class="listContent" id="listContent"></div>
-       <footer class="app-footer">
-       </footer>
     `;
 };
 
