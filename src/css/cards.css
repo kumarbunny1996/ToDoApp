@@ -26,3 +26,9 @@
     text-align: center;
     transform: translateY(50%);
 }
+.desc {
+  line-break: anywhere;
+}
+[data-favorite |= true] {
+  color: rgb(255, 159, 14);
+}

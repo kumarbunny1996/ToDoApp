@@ -1,5 +1,5 @@
 const { cardContentComp } = require("../components/cardListComp");
-const { listContentComp } = require("../components/listsComp");
+const { listContentComp, NoListContComp } = require("../components/listsComp");
 const { events, closeModal, showInfo, hideInfo } = require("../util");
 
 const addListLogic = (e) => {
@@ -14,15 +14,13 @@ const addListLogic = (e) => {
 
 const validateTitle = (value = "") => {
   let todos = JSON.parse(localStorage.getItem("toDoList"));
-  //console.log(todos);
-  if (todos === null || todos === undefined || todos === []) {
+  if (todos === null || todos === undefined || todos.length == 0) {
     let toDosList = [];
     let todoObj = {
       id: Date.now(),
       title: value,
       cardList: [],
     };
-    // console.log(todoObj);
     toDosList.push(todoObj);
     localStorage.setItem("toDoList", JSON.stringify(toDosList));
     listContentComp();
@@ -53,34 +51,35 @@ const validateTitle = (value = "") => {
 };
 
 //deletes the dom
-function deleteListDom(element) {
-    if (element.getAttribute('data-action') === 'delete') {
-        element.parentElement.parentElement.remove();
-    }
-}
+const deleteListDom = (element) => {
+  if (element.getAttribute("data-action") === "delete") {
+    element.parentElement.parentElement.remove();
+  }
+};
 
-const removeData = (listId)=>{
+const removeData = (listId) => {
   let todoList = JSON.parse(localStorage.getItem("toDoList"));
-   let index = todoList.findIndex((list) => {
-     return list.id == listId;
-   });
-   todoList.splice(index, 1);
-   localStorage.setItem("toDoList", JSON.stringify(todoList));
-}
+  let index = todoList.findIndex((list) => {
+    return list.id == listId;
+  });
+  todoList.splice(index, 1);
+  localStorage.setItem("toDoList", JSON.stringify(todoList));
+  if(todoList.length == 0) NoListContComp();
+};
 
 //remove list logic
 const deleteListLogic = (e) => {
   e.stopPropagation();
-    let listId = e.target.dataset.id;
-    let data = e.target.dataset.action;
-    if (data === 'delete') {
-        deleteListDom(e.target);
-        removeData(listId);
-    }
+  let listId = e.target.dataset.id;
+  let data = e.target.dataset.action;
+  if (data === "delete") {
+    deleteListDom(e.target);
+    removeData(listId);
+  }
 };
 
 const addLogicEvent = () => {
-  events("#add-btn", "click", (e) => {
+  events("#add-list", "click", (e) => {
     addListLogic(e);
   });
 };

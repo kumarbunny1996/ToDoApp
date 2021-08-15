@@ -1,14 +1,12 @@
-const { addCardEvent } = require("./listsComp");
 
 require("../../css/common.css");
 require("../../css/header.css");
 require("../../css/cards.css");
 
 const cardContentComp = () => {
-  let cards = JSON.parse(localStorage.getItem("toDoList"));
-  if (cards === null || cards === undefined || cards === []) return;
-  cardArrayComp(cards);
-  addCardEvent();
+  let todos = JSON.parse(localStorage.getItem("toDoList"));
+  if (todos === null || todos === undefined || todos.length == 0) return;
+  cardArrayComp(todos);
 };
 
 const cardArray = (cardArr = [], cardCont = []) => {
@@ -17,19 +15,19 @@ const cardArray = (cardArr = [], cardCont = []) => {
     let cardList = cardArr[i].cardList;
     let listId = cardCont[i].dataset.id;
 
-    if (cardArr[i].id === listId && cardList.length != 0) {
+    if (cardArr[i].id == listId && cardList.length != 0) {
       for (let j = 0; j < cardList.length; j++) {
         result += `
               <div class="card-parent" data-id="${cardList[j].card_id}">
                 <div class="card-header">
                   <h2>${cardList[j].title}</h2>
                   <div class="icons">
-                    <span data-favorite="${cardList[j].isFavorite}"><i class="far fa-star"></i></span>
-                    <span><i class="far fa-trash-alt"></i></span>
+                   <i class="far fa-star" data-favorite="${cardList[j].isFavorite}" data-id="${cardList[j].card_id}" data-list="${cardArr[i].id}" data-action="favorite"></i>
+                   <i class="far fa-trash-alt" data-id="${cardList[j].card_id}" data-list="${cardArr[i].id}" data-action="delete-card"></i>
                   </div>
                 </div>
                 <div class="cardDesc" id="cardDesc">
-                  <p>${cardList[j].description}</p>
+                  <p class="desc">${cardList[j].description}</p>
                 </div>
               </div>
         `;
@@ -47,7 +45,8 @@ const cardArray = (cardArr = [], cardCont = []) => {
 
 const cardArrayComp = (cardArr = []) => {
   let cardCont = document.getElementsByClassName("cardList");
-  if (cardCont === null || cardCont === undefined || cardCont === []) return;
+  if (cardCont === null || cardCont === undefined || cardCont.length == 0)
+    return;
   cardArray(cardArr, cardCont);
 };
 

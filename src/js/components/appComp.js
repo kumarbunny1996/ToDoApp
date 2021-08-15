@@ -27,7 +27,7 @@ const dialogDom = () => {
       </div>
       <div class="btns" id="btns">
          <button class="cancel-btn" id="cancel-btn">Cancel</button>
-         <button class="btn" id="add-btn">Add</button>
+         <button class="btn" id="add-list">Add</button>
       </div>
    `;
 };

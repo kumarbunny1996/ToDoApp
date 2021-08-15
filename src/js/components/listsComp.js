@@ -1,12 +1,12 @@
 require("../../css/common.css");
 require("../../css/header.css");
 require("../../css/lists.css");
+const { addCardEventLogic } = require("../app/cardLogic");
 let { events, showModal } = require("../util");
 
 const listContentComp = () => {
   let todos = JSON.parse(localStorage.getItem("toDoList"));
-  //console.log(todos);
-  if (todos === null || todos === undefined || todos === []) {
+  if (todos === null || todos === undefined || todos.length == 0) {
     NoListContComp();
   } else {
     listArrayComp(todos);
@@ -33,39 +33,49 @@ const listArrayComp = (listArr = []) => {
                 <i class="far fa-trash-alt icon-style" data-id="${listArr[i].id}" data-action="delete"></i>
               </div>
               <div class="cardList" id="cardList" data-id="${listArr[i].id}"></div>
-              <button class="card-btn" id="card-btn"><i class="fas fa-plus"></i> Add Card</button>
+              <button class="card-btn" id="card-btn" data-id="${listArr[i].id}" data-action="add-card" ><i class="fas fa-plus"></i> Add Card</button>
             </div>
         `;
   }
   listCont.innerHTML = result;
 };
 
-const cardDialogDom = () => {
+const cardDialogDom = (id) => {
   return `
       <div class="modal-header">Add Card</div>
       <div class="modal-inp">
          <h3 class="title-head">Title *</h3>
-         <input class="title-inp" id="title-inp" type="text" name="title" />
+         <input class="title-inp" id="card-inp" type="text" name="title" />
       </div>
-       <div class="modal-inp" id="modal-inp">
+       <div class="modal-inp" id="modal-desc">
          <h3 class="title-head">Description</h3>
-         <input class="desc-inp" id="desc-inp" type="text" name="description" />
+         <textarea class="desc-inp" id="desc-inp" name="description"></textarea>
       </div>
       <div class="btns" id="btns">
-         <button class="cancel-btn" id="cancel-btn">Cancel</button>
-         <button class="btn" id="add-btn">Add</button>
+         <button class="cancel-btn" id="cancel-btn" data-id="${id}">Cancel</button>
+         <button class="btn" id="add-card" data-id="${id}">Add</button>
       </div>
    `;
 };
 
 const addCardEvent = () => {
-  let dialogValue = cardDialogDom();
-  events("#card-btn", "click", (e) => {
-    showModal(dialogValue);
+  events("#listContent", "click", (e) => {
+    e.stopPropagation();
+    let listId = e.target.dataset.id;
+    let data = e.target.dataset.action;
+    if (data === "add-card") {
+      let dialogValue = cardDialogDom(listId);
+      // if (document.getElementById("modal")) {
+      //   document.body.removeChild(document.getElementById("modal"));
+      // }
+      showModal(dialogValue);
+      addCardEventLogic();
+    }
   });
 };
 
 module.exports = {
   listContentComp,
   addCardEvent,
+  NoListContComp,
 };

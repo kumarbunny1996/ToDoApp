@@ -102,7 +102,7 @@ input {
   outline: none;
   font-size: 16px;
   padding: 5px;
-  border: 1px solid #b7b7b7;
+  border: 2px solid #b7b7b7;
   /* margin-bottom: 12px; */
   border-radius: 5px;
 }
@@ -127,7 +127,7 @@ input {
   outline: none;
   font-size: 16px;
   padding: 5px;
-  border: 1px solid #b7b7b7;
+  border: 2px solid #b7b7b7;
   /* margin-bottom: 12px; */
   border-radius: 5px;
 }
