@@ -12,7 +12,7 @@ const updateCardListDom = (listId, listObj) => {
         result += `
               <div class="card-parent draggable" draggable="true" data-id="${cardList[j].card_id}">
                 <div class="card-header">
-                  <h2>${cardList[j].title}</h2>
+                  <h2 style="font-size:20px; text-transform:capitalize;">${cardList[j].title}</h2>
                   <div class="icons">
                    <i class="far fa-star" data-favorite="${cardList[j].isFavorite}" data-id="${cardList[j].card_id}" data-list="${listId}" data-action="favorite"></i>
                    <i class="far fa-trash-alt" data-id="${cardList[j].card_id}" data-list="${listId}" data-action="delete-card"></i>
@@ -105,8 +105,8 @@ const startDragging = () => {
       if (elem == null) return;
       let id = elem.dataset.id;
       draggable.classList.remove("dragging");
-      if(listId == id) return ;
-      let index = findDraggedIndex(e,elem);
+      if (listId == id) return;
+      let index = findDraggedIndex(e, elem);
       updateListOfCards(e, index);
       deleteDraggedCard(e, listId);
     });
@@ -120,13 +120,13 @@ const draggingOver = () => {
     container.addEventListener("dragover", (e) => {
       e.preventDefault();
       let children = container.children;
-       const afterElement = getDragAfterElement(container, e.clientY);
-       const draggable = document.querySelector(".dragging");
-       if (afterElement == null) {
-         children[1].appendChild(draggable);
-       } else {
-         children[1].insertBefore(draggable, afterElement);
-       }
+      const afterElement = getDragAfterElement(container, e.clientY);
+      const draggable = document.querySelector(".dragging");
+      if (afterElement == null) {
+        children[1].appendChild(draggable);
+      } else {
+        children[1].insertBefore(draggable, afterElement);
+      }
     });
   });
 };
@@ -134,12 +134,12 @@ const draggingOver = () => {
 function getDragAfterElement(container, y) {
   const draggableElements = [
     ...container.querySelectorAll(".draggable:not(.dragging)"),
-  ];// elems which not have dragging class
+  ]; // elems which not have dragging class
 
   return draggableElements.reduce(
     (closest, child) => {
       const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;// distance b/w center of box and cursor //negative num is dead center
+      const offset = y - box.top - box.height / 2; // distance b/w center of box and cursor //negative num is dead center
       if (offset < 0 && offset > closest.offset) {
         return { offset: offset, element: child };
       } else {
@@ -147,7 +147,7 @@ function getDragAfterElement(container, y) {
       }
     },
     { offset: Number.NEGATIVE_INFINITY }
-  ).element;// return reduced value
+  ).element; // return reduced value
 }
 
 const draggingEvents = () => {

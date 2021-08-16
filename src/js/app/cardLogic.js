@@ -23,7 +23,7 @@ const addCardData = (listObj, title, desc) => {
   };
   cardList.unshift(cardObj);
   listObj.cardList = cardList;
-  console.log(listObj);
+  //console.log(listObj);
 };
 
 const updateCardListDom = (listId, listObj) => {
@@ -38,7 +38,7 @@ const updateCardListDom = (listId, listObj) => {
         result += `
               <div class="card-parent draggable" draggable="true" data-id="${cardList[j].card_id}">
                 <div class="card-header">
-                  <h2>${cardList[j].title}</h2>
+                  <h2 style="font-size:20px; text-transform:capitalize;">${cardList[j].title}</h2>
                   <div class="icons">
                    <i class="far fa-star" data-favorite="${cardList[j].isFavorite}" data-id="${cardList[j].card_id}" data-list="${listId}" data-action="favorite"></i>
                    <i class="far fa-trash-alt" data-id="${cardList[j].card_id}" data-list="${listId}" data-action="delete-card"></i>
@@ -93,7 +93,7 @@ const favoriteDomUpdate = (elem, isFavorite) => {
 const updateCardFavorite = (listObj, cardId, elem) => {
   let cardList = listObj.cardList;
   let card = cardList.find((card) => card.card_id == cardId);
-  console.log(card);
+  //console.log(card);
   if (card) {
     let isFavorite = !card.isFavorite;
     card.isFavorite = isFavorite;
@@ -154,7 +154,7 @@ const noCardComp = (listObj) => {
 const updateCardList = (listObj, cardId, elem) => {
   let cardList = listObj.cardList;
   let card = cardList.find((card) => card.card_id == cardId);
-  console.log(card);
+  //console.log(card);
   if (card) {
     let index = cardList.findIndex((card) => {
       return card.card_id == cardId;

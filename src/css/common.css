@@ -54,10 +54,10 @@ input {
   transition: all 0.1s ease;
   border-radius: 5px;
 }
-.btn:hover {
+/* .btn:hover {
   background-color: #fff;
   color: #2186c9;
-}
+} */
 .modal-overlay {
   background-color: #032f3e;
   opacity: 0.95;
