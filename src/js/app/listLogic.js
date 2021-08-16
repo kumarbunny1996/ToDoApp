@@ -1,7 +1,25 @@
 const { cardContentComp } = require("../components/cardListComp");
 const { listContentComp, NoListContComp } = require("../components/listsComp");
 const { events, closeModal, showInfo, hideInfo } = require("../util");
+const { draggingEvents } = require("./dragLogic");
 
+
+const setTodoObj = ( todos =[], value="")=>{
+  let todoObj = {
+    id: Date.now(),
+    title: value,
+    cardList: [],
+  };
+  todos.push(todoObj);
+  localStorage.setItem("toDoList", JSON.stringify(todos));
+  init();
+}
+const init = ()=>{
+  listContentComp();
+  cardContentComp();
+  draggingEvents();
+  closeModal();
+}
 const addListLogic = (e) => {
   let input = document.getElementById("title-inp").value;
   let value = input.toLowerCase();
@@ -16,19 +34,10 @@ const validateTitle = (value = "") => {
   let todos = JSON.parse(localStorage.getItem("toDoList"));
   if (todos === null || todos === undefined || todos.length == 0) {
     let toDosList = [];
-    let todoObj = {
-      id: Date.now(),
-      title: value,
-      cardList: [],
-    };
-    toDosList.push(todoObj);
-    localStorage.setItem("toDoList", JSON.stringify(toDosList));
-    listContentComp();
-    cardContentComp();
-    closeModal();
+    setTodoObj(toDosList, value);
   } else {
     let listObj = todos.find((list) => value === list.title);
-    console.log(listObj);
+    //console.log(listObj);
     if (listObj) {
       showInfo("Title must be unique, this title already exits");
       return;
@@ -36,16 +45,7 @@ const validateTitle = (value = "") => {
       if (document.getElementById("msg")) {
         hideInfo();
       }
-      let todoObj = {
-        id: Date.now(),
-        title: value,
-        cardList: [],
-      };
-      todos.push(todoObj);
-      localStorage.setItem("toDoList", JSON.stringify(todos));
-      listContentComp();
-      cardContentComp();
-      closeModal();
+     setTodoObj(todos, value);
     }
   }
 };

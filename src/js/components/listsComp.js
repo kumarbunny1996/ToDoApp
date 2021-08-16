@@ -57,7 +57,7 @@ const cardDialogDom = (id) => {
       <div class="modal-header">Add Card</div>
       <div class="modal-inp" id="modal-inp">
          <h3 class="title-head">Title *</h3>
-         <input class="title-inp" id="card-inp" type="text" name="title" />
+         <input class="title-inp" id="card-inp" type="text" name="title" autocomplete="off" />
       </div>
        <div class="modal-inp" id="modal-desc">
          <h3 class="title-head">Description</h3>

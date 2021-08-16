@@ -9,7 +9,7 @@ const toDoListPage = () => {
   mainContent.innerHTML = `
        <header>
           <h1>ToDoList</h1>
-          <input type="text" id="myInput" placeholder="Search for todos..">
+          <input type="text" id="myInput" placeholder="Search for todos.." autocomplete="off">
           <input type="button" id="myBtn" value="Search" hidden="true">
           <button id="addList" class="btn">Add List</button>
        </header>
@@ -22,7 +22,7 @@ const dialogDom = () => {
       <div class="modal-header">Add List</div>
       <div class="modal-inp" id="modal-inp">
          <h3 class="title-head">Title</h3>
-         <input class="title-inp" id="title-inp" type="text" name="title" />
+         <input class="title-inp" id="title-inp" type="text" name="title" autocomplete="off" />
       </div>
       <div class="btns" id="btns">
          <button class="cancel-btn" id="cancel-btn">Cancel</button>
