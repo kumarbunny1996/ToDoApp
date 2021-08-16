@@ -1,4 +1,5 @@
 const { events, closeModal, showInfo, hideInfo } = require("../util");
+const { draggingEvents } = require("./dragLogic");
 
 require("../../css/common.css");
 require("../../css/header.css");
@@ -62,7 +63,7 @@ const addCardInps = (title, desc, listId) => {
     addCardData(listObj, title, desc);
     updateData(listId, todos, listObj);
     updateCardListDom(listId, listObj);
-    startDragging();
+    draggingEvents();
     closeModal();
   }
 };
@@ -184,60 +185,6 @@ const deleteCardLogic = (e) => {
   }
 };
 
-// drag and drop functionality
-// dragging start
-
-const startDragging = () => {
-  let draggables = document.querySelectorAll(".draggable");
-  draggables.forEach((draggable) => {
-    draggable.addEventListener("dragstart", (e) => {
-      draggable.classList.add("dragging");
-    });
-    draggable.addEventListener("dragend", (e) => {
-      draggable.classList.remove("dragging");
-    });
-  });
-};
-
-//drop containers
-const draggingOver = () => {
-  let containers = document.querySelectorAll(".drag-container");
-  containers.forEach((container) => {
-    container.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      let draggable = document.querySelector(".dragging");
-      container.appendChild(draggable);
-      //  const afterElement = getDragAfterElement(container, e.clientY);
-      //  const draggable = document.querySelector(".dragging");
-      //  let children = container.childNodes;
-      //  if (afterElement == null) {
-      //    children[2].appendChild(draggable);
-      //  } else {
-      //    children[2].insertBefore(draggable, afterElement);
-      //  }
-    });
-  });
-};
-
-function getDragAfterElement(container, y) {
-  const draggableElements = [
-    ...container.querySelectorAll(".draggable:not(.dragging)"),
-  ];
-
-  return draggableElements.reduce(
-    (closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    },
-    { offset: Number.NEGATIVE_INFINITY }
-  ).element;
-}
-
 const addCardEventLogic = () => {
   events("#add-card", "click", (e) => {
     addCardLogic(e);
@@ -256,14 +203,14 @@ const deleteCardEvent = () => {
   });
 };
 
-const cardDomEvents = () =>{
+const cardDomEvents = () => {
   favoriteCardEvent();
   deleteCardEvent();
-  startDragging();
-  draggingOver();
-}
+  draggingEvents();
+};
 
 module.exports = {
+  updateCardListDom,
   addCardEventLogic,
   cardDomEvents,
   noCardComp,

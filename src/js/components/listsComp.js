@@ -41,7 +41,7 @@ const listArrayComp = (listArr = []) => {
     result += `
             <div class="list-parent drag-container" data-id="${listArr[i].id}">
               <div class="list-header">
-                <h2>${listArr[i].title}</h2>
+                <h2 style="font-size:24px; font-weight:900; text-transform: capitalize;">${listArr[i].title}</h2>
                 <i class="far fa-trash-alt icon-style" data-id="${listArr[i].id}" data-action="delete"></i>
               </div>
               <div class="cardList" id="cardList" data-id="${listArr[i].id}"></div>

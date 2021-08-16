@@ -20,7 +20,7 @@ const cardArray = (cardArr = [], cardCont = []) => {
         result += `
               <div class="card-parent draggable" data-id="${cardList[j].card_id}" draggable="true">
                 <div class="card-header">
-                  <h2>${cardList[j].title}</h2>
+                  <h2 style="font-size:20px; text-transform: capitalize;">${cardList[j].title}</h2>
                   <div class="icons">
                    <i class="far fa-star" data-favorite="${cardList[j].isFavorite}" data-id="${cardList[j].card_id}" data-list="${cardArr[i].id}" data-action="favorite"></i>
                    <i class="far fa-trash-alt" data-id="${cardList[j].card_id}" data-list="${cardArr[i].id}" data-action="delete-card"></i>

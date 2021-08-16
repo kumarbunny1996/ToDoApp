@@ -44,7 +44,7 @@ const searchResultsDom = (results = []) => {
     result += `
               <div class="card-parent draggable" data-id="${results[j].card_id}">
                 <div class="card-header">
-                  <h2>${results[j].title}</h2>
+                  <h2 style="font-size:20px; text-transform: capitalize;">${results[j].title}</h2>
                 </div>
                 <div class="cardDesc" id="cardDesc">
                   <p class="desc">${results[j].description}</p>
